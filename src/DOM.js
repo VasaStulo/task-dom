@@ -49,13 +49,19 @@ export function generateTree(childrenCount, level) {
 */
 export function replaceNodes() {
     let tree = generateTree(2, 3);
-    let children = tree.childNodes;
-    for (let child of children) {
-        if (child.getAttribute('class') == 'item_2') {
-            let newChild = document.createElement('section');
-            newChild.setAttribute('class', 'item_2');
-            tree.replaceChild(newChild, child);
-        }
-    }
+    let newChild = document.createElement('section');
+
+    newChild.classList.add('item_2');
+    newChild.innerHTML = tree.firstChild.innerHTML;
+
+    let newChild2 = document.createElement('section');
+
+    newChild2.classList.add('item_2');
+    newChild2.innerHTML = tree.firstChild.innerHTML;
+    tree.removeChild(tree.getElementsByClassName('item_2')[0]);
+    tree.removeChild(tree.getElementsByClassName('item_2')[0]);
+    tree.appendChild(newChild);
+    tree.appendChild(newChild2);
+
     return tree;
 }
